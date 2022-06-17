@@ -28,22 +28,41 @@ public class SetTest {
         numbers.add(3);
     }
 
-    @Test
-    void test01() {
-        assertThat(numbers.contains(1)).isTrue();
-        assertThat(numbers.contains(2)).isTrue();
-        assertThat(numbers.contains(3)).isTrue();
-    }
+    //    public static class Strings {
+//        public static boolean isBlank(String input) {
+//            return input == null || input.trim().isEmpty();
+//        }
+//    }
+//
+//    @ParameterizedTest
+//    @ValueSource(strings = {"", "  "})
+//    void isBlank_ShouldReturnTrueForNullOrBlankStrings(String input) {
+//        System.out.println("input : " + input);
+//        assertTrue(Strings.isBlank(input));
+//    }
 
-    public boolean isBlank(String input) {
-        return input.isEmpty();
+    // 이하 isContains_ShouldReturnTrueForNullOfContainsInteger 와 같다.
+    // @ParameterizedTest 를 이용, 반복 test 를 줄일 수 있다.
+//    @Test
+//    void test01() {
+//        assertThat(numbers.contains(1)).isTrue();
+//        assertThat(numbers.contains(2)).isTrue();
+//        assertThat(numbers.contains(3)).isTrue();
+//    }
+
+
+    public static class Contains {
+        public static boolean isContain(int number) {
+            return numbers.contains(number);
+        }
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"", "  "})
-    void isBlank_ShouldReturnTrueForNullOrBlankStrings(String input) {
-        assertTrue(isBlank(input));
+    @ValueSource(ints = {1,2,3,4})
+    void isContains_ShouldReturnTrueForNullOfContainsInteger(int number) {
+        assertTrue(Contains.isContain(number));
     }
+
 
     @ParameterizedTest
     @CsvSource(value = {"test:test", "tEst:test", "Java:java"}, delimiter = ':')
@@ -53,3 +72,4 @@ public class SetTest {
     }
 
 }
+
